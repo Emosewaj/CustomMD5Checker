@@ -45,14 +45,14 @@ namespace CustomMD5Checker
             {
                 var folderSize = DirSize(new DirectoryInfo(Directory.GetCurrentDirectory()));
                 Results.AddNote("");
-                Results.AddNote($"Dir size: {folderSize} B");
+                Results.AddNote($"Dir size: {folderSize.ToString("N2")} B");
                 Results.AddNote($"Dir size: {(folderSize / 1024.0).ToString("N2")} KB");
                 Results.AddNote($"Dir size: {(folderSize / 1024.0 / 1024.0).ToString("N2")} MB");
                 Results.AddNote($"Dir size: {(folderSize / 1024.0 / 1024.0 / 1024.0).ToString("N2")} GB");
                 Results.AddNote("");
 
                 var freeDiskSpace = GetTotalFreeSpace(Directory.GetCurrentDirectory().Substring(0, 3));
-                Results.AddNote($"Free disk space: {freeDiskSpace} B");
+                Results.AddNote($"Free disk space: {freeDiskSpace.ToString("N2")} B");
                 Results.AddNote($"Free disk space: {(freeDiskSpace / 1024.0).ToString("N2")} KB");
                 Results.AddNote($"Free disk space: {(freeDiskSpace / 1024.0 / 1024.0).ToString("N2")} MB");
                 Results.AddNote($"Free disk space: {(freeDiskSpace / 1024.0 / 1024.0 / 1024.0).ToString("N2")} GB");

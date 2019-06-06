@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CustomMD5Checker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Custom MD5 Checker")]
+[assembly: AssemblyDescription("MD5 Checking Tool For Use With IW4x")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CustomMD5Checker")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCompany("IW4x Team")]
+[assembly: AssemblyProduct("Custom MD5 Checker")]
+[assembly: AssemblyCopyright("Copyright © Emosewaj 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
