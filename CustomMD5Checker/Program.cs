@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace CustomMD5Checker
 {
@@ -81,11 +82,11 @@ namespace CustomMD5Checker
                     if (line == "")
                         continue;
 
-                    var contents = line.Split(' ');
-                    if (contents.Length != 2)
+                    var contents = Regex.Match(line, @"^([0-9a-f]{32}) \*(.+)$");
+                    if (!contents.Success)
                         Exit($"Something seems to be wrong with the md5 file!\nLine {lineNum}: {line}");
-                    var hash = contents[0];
-                    var path = @".\" + contents[1].Substring(1);
+                    var hash = contents.Groups[1].ToString();
+                    var path = @".\" + contents.Groups[2];
 
                     hashList.Add(new HashEntry(path, hash));
                 }
