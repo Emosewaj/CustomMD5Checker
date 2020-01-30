@@ -119,6 +119,11 @@ namespace CustomMD5Checker
                     continue;
                 }
 
+                if(i == 516)
+                {
+                    Console.Write("");
+                }
+
                 var md5 = CalculateMD5(file);
                 Console.Write($" - {md5} ");
 
@@ -189,21 +194,25 @@ namespace CustomMD5Checker
         static string CalculateMD5(string path)
         {
             MD5 md5 = MD5.Create();
-            int offset = 0;
             FileStream file = File.OpenRead(path);
-            //byte[] block = File.ReadAllBytes(path);
-            int size = (int)file.Length / 10;
-            byte[] block = new byte[file.Length];
 
-            while (file.Length - offset >= size)
+            // Quickfix for empty files, wtf even tho
+            if (file.Length == 0)
+                return "d41d8cd98f00b204e9800998ecf8427e";
+
+            int size = file.Length >= 10 ? (int)(file.Length / 10) : (int)file.Length;
+            byte[] block = new byte[size];
+            long bytesRead = 0;
+
+            while (file.Length - bytesRead >= size)
             {
-                file.Read(block, offset, size);
-                offset += md5.TransformBlock(block, offset, size, block, offset);
+                bytesRead += file.Read(block, 0, size);
+                md5.TransformBlock(block, 0, size, block, 0);
                 Console.Write(".");
             }
 
-            file.Read(block, offset, (int)file.Length - offset);
-            md5.TransformFinalBlock(block, offset, (int)file.Length - offset);
+            file.Read(block, 0, (int)(file.Length - bytesRead));
+            md5.TransformFinalBlock(block, 0, (int)(file.Length - bytesRead));
 
             file.Close();
             file.Dispose();
