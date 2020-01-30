@@ -120,11 +120,6 @@ namespace CustomMD5Checker
                     continue;
                 }
 
-                if(i == 516)
-                {
-                    Console.Write("");
-                }
-
                 var md5 = CalculateMD5(file);
                 Console.Write($" - {md5} ");
 
